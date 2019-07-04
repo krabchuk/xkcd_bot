@@ -8,10 +8,14 @@ import time
 
 bot = telebot.TeleBot(tokens.token, threaded=False)
 max_num = 2170
+user_messages = 0
 
 
 @bot.message_handler(content_types=['text'])
 def send_timetable(message):
+    global user_messages
+    user_messages += 1
+    print(user_messages)
     url = "https://xkcd.com/" + str(randint(1, max_num)) + "/"
     image_url = ""
     url_tokens = req.urlopen(url).read().split()
